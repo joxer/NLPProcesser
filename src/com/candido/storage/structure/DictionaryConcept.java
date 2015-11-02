@@ -39,6 +39,9 @@ public class DictionaryConcept {
     }
 
     public Map<String, Word> getWords() {
+        if (words == null) {
+            words = new HashMap<>();
+        }
         return words;
     }
 

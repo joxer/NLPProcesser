@@ -1,4 +1,4 @@
-package com.candido.storage.StepLinkCollection;
+package com.candido.storage.steplinkcollection;
 
 import com.candido.Logger;
 import com.candido.storage.SimpleAnalyzerInformation;
@@ -22,21 +22,21 @@ public class LogResultProbability extends StepLinks {
     public boolean handle() {
         Logger.info("Current phrase computed: " + info.getOriginalString());
 
-        Logger.info("Topic of the phrase are:");
+        Logger.debug("Topic of the phrase are:");
         while (info.getWords().size() > 0) {
             PhraseConcept concept = info.getWords().poll();
-            Logger.info(concept.getConcept());
-            Logger.info("Because it talk about: " + concept.printWords());
+            Logger.debug(concept.getConcept());
+            Logger.debug("Because it talk about: " + concept.printWords());
         }
 
 
-        Logger.info("Positive adjective of the phrase are:");
-        Logger.info(Arrays.toString(info.getPositiveAdjective().toArray()));
+        Logger.debug("Positive adjective of the phrase are:");
+        Logger.debug(Arrays.toString(info.getPositiveAdjective().toArray()));
 
-        Logger.info("Negative adjective of the phrase are:");
-        Logger.info(Arrays.toString(info.getNegativeAdjective().toArray()));
+        Logger.debug("Negative adjective of the phrase are:");
+        Logger.debug(Arrays.toString(info.getNegativeAdjective().toArray()));
 
-        Logger.info("Final Result:" + this.info.result);
+        Logger.info("Final Result:" + this.info.getResult());
         return false;
     }
 }

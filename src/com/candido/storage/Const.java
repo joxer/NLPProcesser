@@ -10,6 +10,9 @@ public class Const {
     public static final int VERBOSE = 2;
     public static final int INFO = 1;
     public static final double NO_POINTS = -2;
+    public static final String DICTIONARY_ARGUMENT_STRING = "--dictionary=";
+    public static final String REVIEWS_ARGUMENT_STRING = "--reviews=";
+    public static final int MEANING_NEGATION = -1;
     public static double POSITIVE_ADJECTIVE_MIN = 0;
 
     public enum PHRASE_PARTS {
@@ -28,6 +31,10 @@ public class Const {
 
             }
         }
+    }
+
+    public enum MODIFIERS {
+        NEGATION
     }
 }
 

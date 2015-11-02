@@ -1,7 +1,11 @@
 package com.candido.storage;
 
-import com.candido.storage.StepLinkCollection.Token;
-import com.candido.storage.structure.*;
+import com.candido.WordsStorage;
+import com.candido.storage.steplinkcollection.Token;
+import com.candido.storage.structure.DictionaryConcept;
+import com.candido.storage.structure.PhraseConcept;
+import com.candido.storage.structure.Word;
+import com.candido.storage.structure.WordsGroup;
 
 import java.util.*;
 
@@ -11,13 +15,13 @@ import java.util.*;
 
 
 public class SimpleAnalyzerInformation {
-    public double result;
-    PriorityQueue<PhraseConcept> words;
-    Set<Word> positiveAdjective;
-    Set<Word> negativeAdjective;
-    WordsStorage wordStorage;
-    List<Token> tokens;
-    String originalString;
+    private double result;
+    private PriorityQueue<PhraseConcept> words;
+    private Set<Word> positiveAdjective;
+    private Set<Word> negativeAdjective;
+    private WordsStorage wordStorage;
+    private List<Token> tokens;
+    private String originalString;
 
     public SimpleAnalyzerInformation(String originalString, WordsStorage wordStorage) {
         this.words = new PriorityQueue<>(10, new PhraseConcept.ConceptComparator());
@@ -38,7 +42,6 @@ public class SimpleAnalyzerInformation {
     }
 
     public boolean isBadAdjective(Word currentToken) {
-
         double value = currentToken.getPoints();
         return value != Const.NO_POINTS && value < Const.POSITIVE_ADJECTIVE_MIN;
     }
@@ -54,7 +57,6 @@ public class SimpleAnalyzerInformation {
 
     public Word getAdjectiveDefinition(String currentToken) {
         return wordStorage.getWord(currentToken, Const.PHRASE_PARTS.ADJECTIVE);
-
     }
 
     public PriorityQueue<PhraseConcept> getWords() {
@@ -91,6 +93,14 @@ public class SimpleAnalyzerInformation {
 
     public Map<Const.PHRASE_PARTS, WordsGroup> getPhrasePart() {
         return this.wordStorage.getPhrasePart();
+    }
+
+    public double getResult() {
+        return result;
+    }
+
+    public void setResult(double result) {
+        this.result = result;
     }
 }
 

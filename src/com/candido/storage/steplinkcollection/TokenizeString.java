@@ -1,4 +1,4 @@
-package com.candido.storage.StepLinkCollection;
+package com.candido.storage.steplinkcollection;
 
 import com.candido.storage.Const;
 import com.candido.storage.SimpleAnalyzerInformation;
@@ -35,11 +35,19 @@ public class TokenizeString extends StepLinks {
                 String pattern = "\\s+(" + currentString + ")(\\w+|\\s+)";
                 Pattern patternObject = Pattern.compile(pattern);
                 Matcher match = patternObject.matcher(original);
+
+                /*
+                SHOULD LOOKUP ON NEGATION
+                 */
+
                 if (match.find()) {
-                    info.getTokens().add(new Token(currentString, phrasePart));
+                    if (match.group(1).equals(currentString)) {
+                        info.getTokens().add(new Token(currentString, phrasePart));
+                    }
+                }
                 }
             }
-        }
+
         return false;
     }
 

@@ -1,4 +1,4 @@
-package com.candido.storage.StepLinkCollection;
+package com.candido.storage.steplinkcollection;
 
 /**
  * Created by joxer on 01/11/15.

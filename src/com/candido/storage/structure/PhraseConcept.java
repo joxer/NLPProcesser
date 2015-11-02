@@ -1,6 +1,7 @@
 package com.candido.storage.structure;
 
 import java.util.Comparator;
+import java.util.HashMap;
 
 /**
  * Created by joxer on 31/10/15.
@@ -19,6 +20,7 @@ public class PhraseConcept extends DictionaryConcept {
 
     public PhraseConcept(DictionaryConcept concept, int frequency) {
         super(concept);
+        this.setWords(new HashMap<String, Word>());
         this.frequency = frequency;
 
     }
@@ -31,6 +33,10 @@ public class PhraseConcept extends DictionaryConcept {
         return this.frequency;
     }
 
+    public void setWords(HashMap<String, Word> words) {
+        this.words = words;
+    }
+
     public static class ConceptComparator implements Comparator<PhraseConcept> {
 
         @Override
@@ -38,7 +44,6 @@ public class PhraseConcept extends DictionaryConcept {
             if (t1.frequency < t2.frequency) {
                 return 1;
             } else if (t1.frequency > t2.frequency) {
-
                 return -1;
             } else {
                 return 0;

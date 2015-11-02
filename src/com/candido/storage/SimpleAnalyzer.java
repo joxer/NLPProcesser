@@ -1,7 +1,7 @@
 package com.candido.storage;
 
-import com.candido.storage.StepLinkCollection.*;
-import com.candido.storage.structure.WordsStorage;
+import com.candido.WordsStorage;
+import com.candido.storage.steplinkcollection.*;
 
 /**
  * Created by joxer on 31/10/15.
@@ -46,8 +46,7 @@ public class SimpleAnalyzer implements Criteria {
         ComputeResult compute = new ComputeResult(infos);
         LogResultProbability log = new LogResultProbability(infos);
 
-        tokenizer
-                .setNext(subject);
+        tokenizer.setNext(subject);
         subject.setNext(goodAdjective);
         goodAdjective.setNext(badAdjective);
         badAdjective.setNext(compute);
@@ -55,7 +54,6 @@ public class SimpleAnalyzer implements Criteria {
         StepLinks step = tokenizer;
 
         while (step != null) {
-
             step.handle();
             step = step.next();
         }

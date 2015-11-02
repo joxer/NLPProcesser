@@ -1,7 +1,9 @@
-package com.candido.storage.structure;
+package com.candido;
 
-import com.candido.Utils;
 import com.candido.storage.Const;
+import com.candido.storage.structure.DictionaryConcept;
+import com.candido.storage.structure.Word;
+import com.candido.storage.structure.WordsGroup;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,7 +49,6 @@ public class WordsStorage {
 
             storage.phraseParts.put(phrasePartKey, wordGroup);
         }
-
 
         return storage;
     }
@@ -99,18 +100,18 @@ public class WordsStorage {
     }
 
     private void addWordToConceptList(DictionaryConcept concept, Word wd) {
-        concept.words.put(wd.getValue(), wd);
-        this.concepts.put(concept.concept, concept);
+        concept.getWords().put(wd.getValue(), wd);
+        this.concepts.put(concept.getConcept(), concept);
     }
 
     private void increaseConceptValueInConceptList(String concept, Word wd) {
         DictionaryConcept cp = this.concepts.get(concept);
-        cp.words.put(wd.getValue(), wd);
+        cp.getWords().put(wd.getValue(), wd);
     }
 
     private boolean conceptExist(DictionaryConcept cp) {
 
-        return concepts.get(cp.concept) != null;
+        return concepts.get(cp.getConcept()) != null;
     }
 
     public Map<String, DictionaryConcept> getConcepts() {

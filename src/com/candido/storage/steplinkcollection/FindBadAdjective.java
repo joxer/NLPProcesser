@@ -1,4 +1,4 @@
-package com.candido.storage.StepLinkCollection;
+package com.candido.storage.steplinkcollection;
 
 import com.candido.Logger;
 import com.candido.storage.Const;

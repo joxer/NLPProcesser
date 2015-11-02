@@ -1,4 +1,4 @@
-package com.candido.storage.StepLinkCollection;
+package com.candido.storage.steplinkcollection;
 
 import com.candido.storage.Const;
 import com.candido.storage.SimpleAnalyzerInformation;
@@ -38,7 +38,6 @@ public class FindSubject extends StepLinks {
             if (wd != null && wd.getPhrasePart() == Const.PHRASE_PARTS.NOUN) {
                 DictionaryConcept cp = info.findConceptWithWord(wd);
                 PhraseConcept ph = new PhraseConcept(cp, 1);
-
                 addWordToConceptOrIncreaseValueOfConcept(ph, currentToken);
             }
         }

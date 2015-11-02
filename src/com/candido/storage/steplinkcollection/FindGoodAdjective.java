@@ -1,4 +1,4 @@
-package com.candido.storage.StepLinkCollection;
+package com.candido.storage.steplinkcollection;
 
 import com.candido.Logger;
 import com.candido.storage.Const;
@@ -29,7 +29,8 @@ public class FindGoodAdjective extends StepLinks {
             Token currentToken = tokens.get(i);
             if (currentToken.part == Const.PHRASE_PARTS.ADJECTIVE) {
                 Word wd = this.info.getAdjectiveDefinition(currentToken.token);
-                if (info.isGoodAdjective(wd)) {
+
+                if (info.isGoodAdjective(wd) && currentToken.modifier != Const.MODIFIERS.NEGATION) {
                     Logger.debug("found good adjective:" + currentToken);
                     info.addPositiveAdjective(wd);
                 }

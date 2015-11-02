@@ -1,4 +1,4 @@
-package com.candido.storage.StepLinkCollection;
+package com.candido.storage.steplinkcollection;
 
 import com.candido.storage.SimpleAnalyzerInformation;
 import com.candido.storage.structure.Word;
@@ -17,7 +17,7 @@ public class ComputeResult extends StepLinks {
     public boolean handle() {
         double positiveSum = 0.0;
         double negativeSum = 0.0;
-
+        double finalResult = 0.0;
         double sum = info.getPositiveAdjective().size() + info.getNegativeAdjective().size();
 
         for (Word wd : info.getPositiveAdjective()) {
@@ -27,8 +27,18 @@ public class ComputeResult extends StepLinks {
             negativeSum += Math.abs(wd.getPoints());
         }
 
-        double finalResult = (positiveSum - negativeSum) / sum;
-        this.info.result = finalResult;
+        if (info.getPositiveAdjective().size() > info.getNegativeAdjective().size()) {
+            positiveSum *= 1.25;
+        } else {
+            negativeSum *= 1.25;
+        }
+        if (positiveSum == 0.0 && negativeSum == 0.0) {
+            finalResult = 0.0;
+        } else {
+            finalResult = (positiveSum - negativeSum) / sum;
+        }
+
+        this.info.setResult(finalResult);
 
         return false;
     }
