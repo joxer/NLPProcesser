@@ -83,3 +83,8 @@ a thing in the review.
 "Computing result" is the weighted average of the total adjectives. A little fixed is did by the multiplication by a
 costant in the case the positive adjectives are more than the negatives ones or vice versa.
 
+
+Testing it:
+
+I got some real reviews from tripadvisor and putted in a json file as input for the program.
+The results are good, it returns a good idea of the hotel for each review and bring out nearly exact result.

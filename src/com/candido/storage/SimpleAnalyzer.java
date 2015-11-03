@@ -13,39 +13,42 @@ public class SimpleAnalyzer implements Criteria {
     WordsStorage wordStorage;
     String input;
 
-    public SimpleAnalyzer(String input, WordsStorage wordStorage) {
+    public SimpleAnalyzer(WordsStorage wordStorage) {
         this.infos = new SimpleAnalyzerInformation(input, wordStorage);
         this.wordStorage = wordStorage;
     }
 
 
     @Override
-    public double score() {
+    public Double score() {
 
-        if (cachedResult == null) {
-            process();
-        }
-
-        return cachedResult;
+        return this.infos.getResult();
     }
 
     @Override
     public void process() {
-        processChain(this.input);
+        if (this.input != null) {
+            processChain(this.input);
+        }
     }
 
     public void setInput(String input) {
+        this.infos.setInput(input);
         this.input = input;
     }
 
     public void processChain(String inputString) {
-        TokenizeString tokenizer = new TokenizeString(infos);
-        FindSubject subject = new FindSubject(infos);
-        FindGoodAdjective goodAdjective = new FindGoodAdjective(infos);
-        FindBadAdjective badAdjective = new FindBadAdjective(infos);
-        FindSubjectAdjective subjectAdj = new FindSubjectAdjective(infos);
-        ComputeResult compute = new ComputeResult(infos);
-        LogResultProbability log = new LogResultProbability(infos);
+
+
+        this.infos.clear();
+        this.infos.setInput(inputString);
+        TokenizeString tokenizer = new TokenizeString(this.infos);
+        FindSubject subject = new FindSubject(this.infos);
+        FindGoodAdjective goodAdjective = new FindGoodAdjective(this.infos);
+        FindBadAdjective badAdjective = new FindBadAdjective(this.infos);
+        FindSubjectAdjective subjectAdj = new FindSubjectAdjective(this.infos);
+        ComputeResult compute = new ComputeResult(this.infos);
+        LogResultProbability log = new LogResultProbability(this.infos);
 
         tokenizer.setNext(subject);
         subject.setNext(goodAdjective);
@@ -59,5 +62,11 @@ public class SimpleAnalyzer implements Criteria {
             step.handle();
             step = step.next();
         }
+
+        this.cachedResult = this.infos.getResult();
+    }
+
+    public SimpleAnalyzerInformation getInfos() {
+        return infos;
     }
 }

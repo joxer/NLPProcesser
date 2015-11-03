@@ -20,6 +20,7 @@ public class SimpleAnalyzerInformation {
     private List<Token> tokens;
     private String originalString;
     private List<FuzzyConcept> fuzzyConcepts;
+
     public SimpleAnalyzerInformation(String originalString, WordsStorage wordStorage) {
         this.words = new PriorityQueue<>(10, new PhraseConcept.ConceptComparator());
         this.positiveAdjective = new HashSet<>();
@@ -103,6 +104,22 @@ public class SimpleAnalyzerInformation {
 
     public void addNounConnectedWithAdjectives(FuzzyConcept exConcept) {
         this.fuzzyConcepts.add(exConcept);
+    }
+
+
+    public void clear() {
+        this.result = 0.0;
+        this.words.clear();
+        this.positiveAdjective.clear();
+        this.negativeAdjective.clear();
+        this.tokens.clear();
+        this.originalString = null;
+        this.fuzzyConcepts.clear();
+
+    }
+
+    public void setInput(String input) {
+        this.originalString = input;
     }
 }
 

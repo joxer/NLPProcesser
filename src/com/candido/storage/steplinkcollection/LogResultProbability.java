@@ -5,6 +5,7 @@ import com.candido.storage.SimpleAnalyzerInformation;
 import com.candido.storage.structure.PhraseConcept;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 /**
  * Created by joxer on 01/11/15.
@@ -23,12 +24,13 @@ public class LogResultProbability extends StepLinks {
         Logger.info("Current phrase computed: " + info.getOriginalString());
 
         Logger.debug("Topic of the phrase are:");
-        while (info.getPhraseConcepts().size() > 0) {
-            PhraseConcept concept = info.getPhraseConcepts().poll();
+
+        PriorityQueue<PhraseConcept> concepts = new PriorityQueue<>(info.getPhraseConcepts());
+        while (concepts.size() > 0) {
+            PhraseConcept concept = concepts.poll();
             Logger.debug(concept.getConcept());
             Logger.debug("Because it talk about: " + concept.printWords());
         }
-
 
         Logger.debug("Positive adjective of the phrase are:");
         Logger.debug(Arrays.toString(info.getPositiveAdjective().toArray()));

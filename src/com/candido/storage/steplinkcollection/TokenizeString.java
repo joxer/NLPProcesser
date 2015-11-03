@@ -22,7 +22,7 @@ public class TokenizeString extends StepLinks {
     @Override
     public boolean handle() {
 
-        StringBuffer original = new StringBuffer(info.getOriginalString());
+        String original = info.getOriginalString().toLowerCase();
 
         Iterator<Const.PHRASE_PARTS> phraseParts = info.getPhrasePart().keySet().iterator();
 
@@ -32,7 +32,7 @@ public class TokenizeString extends StepLinks {
             Iterator<String> wordsIterator = group.keySet().iterator();
             while (wordsIterator.hasNext()) {
                 String currentString = wordsIterator.next();
-                String pattern = "\\s+(" + currentString + ")(\\w+|\\s+)";
+                String pattern = "\\s?(" + currentString + ")\\s?";
                 Pattern patternObject = Pattern.compile(pattern);
                 Matcher match = patternObject.matcher(original);
 

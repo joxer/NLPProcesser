@@ -1,14 +1,13 @@
 package com.candido;
 
-import com.candido.storage.Const;
 import com.candido.storage.SimpleAnalyzer;
+import org.apache.commons.cli.*;
 import org.json.JSONException;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
 /**
  * Created by joxer on 31/10/15.
  */
@@ -16,24 +15,34 @@ public class MainProgram {
 
     private String json;
     private String phrases;
+    private Options options;
+
+    public MainProgram() {
+        options = new Options();
+        options.addOption("d", "dictionary", true, "Dictionary of the analyzer");
+        options.addOption("r", "reviews", true, "Reviews of the analyzer");
+    }
 
     public static void main(String args[]) {
-
+        MainProgram mainProgram = new MainProgram();
         try {
-
-            MainProgram mainProgram = new MainProgram();
             mainProgram.parseInput(args);
             mainProgram.run();
-
         } catch (ArgumentsFewException e) {
-            e.printHelp();
+            System.out.println("Too few arguments");
+            mainProgram.printHelp();
         } catch (ArgumentHelpException e) {
-            e.printHelp();
+            mainProgram.printHelp();
         } catch (JSONException e) {
             System.err.println("the JSON input is not properly formatted");
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void printHelp() {
+        HelpFormatter formatter = new HelpFormatter();
+        formatter.printHelp("NLPProcessor", options);
     }
 
     private void run() throws IOException {
@@ -45,7 +54,7 @@ public class MainProgram {
         WordsStorage wd = WordsStorage.loadFromPath(ph);
 
         for (String str : loadInput) {
-            SimpleAnalyzer simpleAnalyzer = new SimpleAnalyzer(str, wd);
+            SimpleAnalyzer simpleAnalyzer = new SimpleAnalyzer(wd);
             simpleAnalyzer.setInput(str);
             simpleAnalyzer.process();
         }
@@ -53,21 +62,26 @@ public class MainProgram {
 
     private void parseInput(String[] args) throws ArgumentsFewException, ArgumentHelpException {
 
-        if (args.length < 2) {
-            throw new ArgumentsFewException("Too few arguments");
-        }
+        CommandLineParser parser = new BasicParser();
+        CommandLine cmd = null;
 
-        if (args[0].contains(Const.DICTIONARY_ARGUMENT_STRING) && args[1].contains(Const.REVIEWS_ARGUMENT_STRING)) {
-            this.json = args[0].replace(Const.DICTIONARY_ARGUMENT_STRING, "");
-            this.phrases = args[1].replace(Const.REVIEWS_ARGUMENT_STRING, "");
-        } else if (args[1].contains(Const.DICTIONARY_ARGUMENT_STRING) && args[0].contains(Const.REVIEWS_ARGUMENT_STRING)) {
-            this.json = args[1].replace(Const.DICTIONARY_ARGUMENT_STRING, "");
-            this.phrases = args[0].replace(Const.REVIEWS_ARGUMENT_STRING, "");
-        } else {
-            throw new ArgumentHelpException("Arguments parse failed");
-        }
 
+        try {
+
+            cmd = parser.parse(options, args);
+
+            if (cmd.hasOption("d") && cmd.hasOption("r")) {
+                this.json = cmd.getOptionValue("d");
+                this.phrases = cmd.getOptionValue("r");
+            } else {
+                throw new ArgumentsFewException();
+            }
+
+
+        } catch (ParseException e) {
+
+            throw new ArgumentHelpException();
+
+        }
     }
-
-
 }

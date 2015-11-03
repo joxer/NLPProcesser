@@ -1,0 +1,402 @@
+{
+  "nouns": [
+    {
+      "value": "room",
+      "topic": "room"
+    },
+    {
+      "value": "apartment",
+      "topic": "room"
+    },
+    {
+      "value": "chamber",
+      "topic": "room"
+    },
+    {
+      "value": "hotel",
+      "topic": "hotel"
+    },
+    {
+      "value": "property",
+      "topic": "hotel"
+    },
+    {
+      "value": "lodge",
+      "topic": "hotel"
+    },
+    {
+      "value": "resort",
+      "topic": "hotel"
+    },
+    {
+      "value": "staff",
+      "topic": "staff"
+    },
+    {
+      "value": "service",
+      "topic": "staff"
+    },
+    {
+      "value": "personnel",
+      "topic": "staff"
+    },
+    {
+      "value": "crew",
+      "topic": "staff"
+    },
+    {
+      "value": "he",
+      "topic": "staff"
+    },
+    {
+      "value": "she",
+      "topic": "staff"
+    },
+    {
+      "value": "location",
+      "topic": "location"
+    },
+    {
+      "value": "spot",
+      "topic": "location"
+    },
+    {
+      "value": "breakfast",
+      "topic": "breakfast"
+    },
+    {
+      "value": "bed",
+      "topic": "bed"
+    },
+    {
+      "value": "sleep quality",
+      "topic": "bed"
+    },
+    {
+      "value": "mattresses",
+      "topic": "bed"
+    },
+    {
+      "value": "linens",
+      "topic": "bed"
+    },
+    {
+      "value": "food",
+      "topic": "food"
+    },
+    {
+      "value": "dinner",
+      "topic": "food"
+    },
+    {
+      "value": "lunch",
+      "topic": "food"
+    },
+    {
+      "value": "bathroom",
+      "topic": "bathroom"
+    },
+    {
+      "value": "lavatory",
+      "topic": "bathroom"
+    },
+    {
+      "value": "shower",
+      "topic": "bathroom"
+    },
+    {
+      "value": "toilet",
+      "topic": "bathroom"
+    },
+    {
+      "value": "bath",
+      "topic": "bathroom"
+    },
+    {
+      "value": "restaurant",
+      "topic": "resturant"
+    },
+    {
+      "value": "pool",
+      "topic": "pool"
+    },
+    {
+      "value": "spa",
+      "topic": "pool"
+    },
+    {
+      "value": "wellness",
+      "topic": "pool"
+    },
+    {
+      "value": "bar",
+      "topic": "bar"
+    },
+    {
+      "value": "price",
+      "topic": "price"
+    },
+    {
+      "value": "bill",
+      "topic": "bill"
+    }
+  ],
+  "adjective": [
+    {
+      "value": "great",
+      "rate": 0.5
+    },
+    {
+      "value": "good",
+      "rate": 0.5
+    },
+    {
+      "value": "very nice",
+      "rate": 0.7
+    },
+    {
+      "value": "amazing",
+      "rate": 0.8
+    },
+    {
+      "value": "careful",
+      "rate": 0.6
+    },
+    {
+      "value": "well",
+      "rate": 0.5
+    },
+    {
+      "value": "helpful",
+      "rate": 0.6
+    },
+    {
+      "value": "friendly",
+      "rate": 0.8
+    },
+    {
+      "value": "clean",
+      "rate": 0.8
+    },
+    {
+      "value": "cleanliness",
+      "rate": 0.8
+    },
+    {
+      "value": "easy",
+      "rate": 0.5
+    },
+    {
+      "value": "excellent",
+      "rate": 0.99
+    },
+    {
+      "value": "top",
+      "rate": 0.99
+    },
+    {
+      "value": "superb",
+      "rate": 0.99
+    },
+    {
+      "value": "fantastic",
+      "rate": 0.85
+    },
+    {
+      "value": "best",
+      "rate": 0.99
+    },
+    {
+      "value": "comfortable",
+      "rate": 0.8
+    },
+    {
+      "value": "perfect",
+      "rate": 0.99
+    },
+    {
+      "value": "love",
+      "rate": 0.6
+    },
+    {
+      "value": "going to come back",
+      "rate": 0.99
+    },
+    {
+      "value": "made our stay",
+      "rate": 0.8
+    },
+    {
+      "value": "was fun",
+      "rate": 0.5
+    },
+    {
+      "value": "not far from",
+      "rate": 0.4
+    },
+    {
+      "value": "problem",
+      "rate": -0.5
+    },
+    {
+      "value": "unfriendly",
+      "rate": -0.8
+    },
+    {
+      "value": "horrible",
+      "rate": -0.99
+    },
+    {
+      "value": "stue",
+      "rate": -0.8
+    },
+    {
+      "value": "unsupported",
+      "rate": -0.7
+    },
+    {
+      "value": "average",
+      "rate": -0.4
+    },
+    {
+      "value": "dirty",
+      "rate": -0.8
+    },
+    {
+      "value": "negative",
+      "rate": -0.8
+    },
+    {
+      "value": "hell",
+      "rate": -0.99
+    },
+    {
+      "value": "bad",
+      "rate": -0.5
+    },
+    {
+      "value": "didn't work",
+      "rate": -0.7
+    },
+    {
+      "value": "ancient",
+      "rate": -0.4
+    },
+    {
+      "value": "cold",
+      "rate": -0.8
+    },
+    {
+      "value": "tiny",
+      "rate": -0.8
+    },
+    {
+      "value": "small",
+      "rate": -0.8
+    },
+    {
+      "value": "hard",
+      "rate": -0.9
+    },
+    {
+      "value": "uncomfortable",
+      "rate": -0.99
+    },
+    {
+      "value": "torn",
+      "rate": -0.5
+    },
+    {
+      "value": "Stay away",
+      "rate": -0.99
+    },
+    {
+      "value": "old",
+      "rate": -0.5
+    },
+    {
+      "value": "decrepit",
+      "rate": -0.8
+    },
+    {
+      "value": "terrible",
+      "rate": -0.99
+    },
+    {
+      "value": "broken",
+      "rate": -0.8
+    },
+    {
+      "value": "junk",
+      "rate": -0.99
+    },
+    {
+      "value": "awful",
+      "rate": -0.99
+    },
+    {
+      "value": "worst",
+      "rate": -0.99
+    },
+    {
+      "value": "disgusting",
+      "rate": -0.99
+    },
+    {
+      "value": "falling out",
+      "rate": -0.8
+    },
+    {
+      "value": "minty",
+      "rate": -0.5
+    },
+    {
+      "value": "thin",
+      "rate": -0.6
+    },
+    {
+      "value": "nightmare",
+      "rate": -0.99
+    },
+    {
+      "value": "freezing",
+      "rate": -0.8
+    },
+    {
+      "value": "didn't sleep",
+      "rate": -0.99
+    },
+    {
+      "value": "rude",
+      "rate": -0.5
+    },
+    {
+      "value": "undisciplined",
+      "rate": -0.7
+    },
+    {
+      "value": "fell off",
+      "rate": -0.7
+    },
+    {
+      "value": "rotten",
+      "rate": -0.9
+    },
+    {
+      "value": "mess",
+      "rate": -0.6
+    },
+    {
+      "value": "surly",
+      "rate": -0.6
+    },
+    {
+      "value": "never",
+      "rate": -0.5
+    },
+    {
+      "value": "not going to come back",
+      "rate": -0.99
+    }
+  ]
+}

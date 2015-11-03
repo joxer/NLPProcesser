@@ -1,7 +1,7 @@
 package com.candido.storage;
 
 public interface Criteria {
-    double score();
+    Double score();
     void process();
 }
 

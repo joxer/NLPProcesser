@@ -29,6 +29,11 @@ public class WordsStorage {
         concepts = new HashMap<>();
     }
 
+    public WordsStorage(WordsStorage wd) {
+        this.phraseParts = new HashMap<>(wd.getPhrasePart());
+        this.concepts = new HashMap<>(wd.getConcepts());
+    }
+
     public static WordsStorage loadFromPath(Path path) throws IOException, JSONException {
 
         String readText = Utils.joinArrayString(Files.readAllLines(path, Charset.defaultCharset()));
