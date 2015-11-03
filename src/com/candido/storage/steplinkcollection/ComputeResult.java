@@ -1,5 +1,6 @@
 package com.candido.storage.steplinkcollection;
 
+import com.candido.storage.Const;
 import com.candido.storage.SimpleAnalyzerInformation;
 import com.candido.storage.structure.Word;
 
@@ -27,10 +28,14 @@ public class ComputeResult extends StepLinks {
             negativeSum += Math.abs(wd.getPoints());
         }
 
+        /*
+        If positive adjective are more than bad ones, we should multiply for a costant
+         */
+
         if (info.getPositiveAdjective().size() > info.getNegativeAdjective().size()) {
-            positiveSum *= 1.25;
+            positiveSum *= Const.MULTIPLY_COSTANT;
         } else {
-            negativeSum *= 1.25;
+            negativeSum *= Const.MULTIPLY_COSTANT;
         }
         if (positiveSum == 0.0 && negativeSum == 0.0) {
             finalResult = 0.0;

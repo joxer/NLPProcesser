@@ -1,0 +1,85 @@
+NLPProcesser - Trivago assessment
+
+This Program concern about a dictionary and a set of reviews you can supply as input.
+The programming language choosen is Java, because it's a fast language and it can work nearly everywhere.
+The only external dependence I've included is the JSON library, it's a very small library so I added all the source code
+to the project instead of using a jar or an external jar
+
+The dictionary is a json object organized this way:
+
+{
+    "nouns": [
+        {
+            "value": "room",
+            "topic": "room"
+        },
+
+        ...
+
+        {
+            "value": "apartment",
+            "topic": "room"
+        },
+    ],
+    "adjective": [
+        {
+            "value": "great",
+            "rate": 0.5
+        },
+        ...
+        {
+            "value": "never",
+            "rate": -0.5
+        },
+    ]
+}
+
+Each part of phrase has his own JSONArray. Each value of the array as a JSONObject made with a value that point to
+the value represented.
+Nouns also have a topic, it's the general concept they are trying to figuring, so for example "room" and "apartment"
+and "chamber" resemble the idea of a room.
+Adjective have a rate that vary from -0.99 to 0.99
+Other part of the phrase can be added to represent verbs, adverbs, ecc.
+
+The program itself is simple, is structured in this way:
+
+1) Load review and dictionary
+2) Take each review and pass it to a chain of processing
+3) the final value is generated and printed out
+
+The program has several level of output. It can be changed before compiling in the Logger class.
+
+The dictionary class has a loader that get all values from json file and put them in two maps. One for the concepts
+and one for the words.
+
+The AnalyzerInfo is a class organized as a Chain of Methods. Each step of it progress the computation of the review.
+I've used this pattern because it's easy to add new criteria of judging, removing the, plugging others, and each step is
+indipendent from the others. The only structure passed between them is an info structure holding all the information
+about sentence
+
+I've created a simple processing chain build up as:
+
+- Tokenize String
+- Find Subject of the phrases
+- Find good adjective
+- Find bad adjective
+- Find Minimum sentence (just an early implementation, it just connect subject to the nearest adjectives)
+- Computing the final result
+
+"Tokenize String" rely on Regular Expression, it's very simple and not quite efficent. I think it could be faster.
+Also it didn't check for a negation before an adjective, it should be capable of doing it.
+
+"Find Subject" relies on a simple lookup with token find in the previous step and the dictionary provided when the
+program load.
+
+"Find Good adjective" is a filter on adjectives to find the good ones
+"Find Bad adjective" is a filter on adjectives to find the bad ones
+
+"Find minimum sentence" is a like an idea for now, it just split the phrase as it found stops and search for subject
+and adjective in this split. It will create then an aggregate of Nouns and adjective that can be virtually connected.
+The idea is to expand this program and pass this kind of result to a training algorithm that can learn how much bad is
+a thing in the review.
+
+"Computing result" is the weighted average of the total adjectives. A little fixed is did by the multiplication by a
+costant in the case the positive adjectives are more than the negatives ones or vice versa.
+

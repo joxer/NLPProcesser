@@ -24,9 +24,7 @@ public class FindGoodAdjective extends StepLinks {
 
         List<Token> tokens = info.getTokens();
 
-        for (int i = 0; i < tokens.size(); i++) {
-
-            Token currentToken = tokens.get(i);
+        for (Token currentToken : tokens) {
             if (currentToken.part == Const.PHRASE_PARTS.ADJECTIVE) {
                 Word wd = this.info.getAdjectiveDefinition(currentToken.token);
 
@@ -34,7 +32,6 @@ public class FindGoodAdjective extends StepLinks {
                     Logger.debug("found good adjective:" + currentToken);
                     info.addPositiveAdjective(wd);
                 }
-
             }
         }
         return false;

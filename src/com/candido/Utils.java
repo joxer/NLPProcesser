@@ -9,8 +9,8 @@ import java.util.List;
 public class Utils {
     public static List<String> normalizeTestAndSplit(String text) {
 
-        text = text.replace(",", " ");
-        return Arrays.asList(text.split(" "));
+
+        return Arrays.asList(text.split("(\\.|;|!|\\?|,)+"));
 
 
     }

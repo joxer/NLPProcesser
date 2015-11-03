@@ -46,7 +46,6 @@ public class WordsStorage {
 
             parseJSONAndPutInWordsGroupAndConcept(phrasePartKey, jsonValue, storage, wordGroup);
 
-
             storage.phraseParts.put(phrasePartKey, wordGroup);
         }
 
@@ -68,34 +67,39 @@ public class WordsStorage {
 
     private static void parseNouns(JSONArray jsonValues, WordsStorage storage, WordsGroup wordGroup) {
         for (int i = 0; i < jsonValues.length(); i++) {
+            try {
+                JSONObject obj = jsonValues.getJSONObject(i);
+                String value = obj.getString("value");
+                String topic = obj.getString("topic");
 
-            JSONObject obj = jsonValues.getJSONObject(i);
-            String value = obj.getString("value");
-            String topic = obj.getString("topic");
+                DictionaryConcept concept = new DictionaryConcept(topic);
+                Word wd = new Word(value, Const.DEFAULT_PRIORITY, Const.PHRASE_PARTS.NOUN);
 
-            DictionaryConcept concept = new DictionaryConcept(topic);
-            Word wd = new Word(value, Const.DEFAULT_PRIORITY, Const.PHRASE_PARTS.NOUN);
+                if (storage.conceptExist(concept)) {
+                    storage.increaseConceptValueInConceptList(topic, wd);
+                } else {
+                    storage.addWordToConceptList(concept, wd);
+                }
 
-            if (storage.conceptExist(concept)) {
-                storage.increaseConceptValueInConceptList(topic, wd);
-            } else {
-                storage.addWordToConceptList(concept, wd);
+                wordGroup.put(value, wd);
+            } catch (JSONException e) {
+                Logger.error("Error parsing json nouns");
             }
-
-            wordGroup.put(value, wd);
         }
     }
 
     private static void parseAdjective(JSONArray jsonValues, WordsStorage storage, WordsGroup wordGroup) {
         for (int i = 0; i < jsonValues.length(); i++) {
+            try {
+                JSONObject obj = jsonValues.getJSONObject(i);
+                String value = obj.getString("value");
+                Double rate = obj.optDouble("rate");
 
-            JSONObject obj = jsonValues.getJSONObject(i);
-            String value = obj.getString("value");
-            Double rate = obj.getDouble("rate");
-
-            Word wd = new Word(value, rate, Const.PHRASE_PARTS.ADJECTIVE);
-
-            wordGroup.put(value, wd);
+                Word wd = new Word(value, rate, Const.PHRASE_PARTS.ADJECTIVE);
+                wordGroup.put(value, wd);
+            } catch (JSONException e) {
+                Logger.error("Error parsing json adjectives");
+            }
         }
     }
 

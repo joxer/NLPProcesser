@@ -43,18 +43,22 @@ public class FindSubject extends StepLinks {
         }
 
         for (PhraseConcept ph : phraseConcept.values()) {
-            info.getWords().offer(ph);
+            info.getPhraseConcepts().offer(ph);
         }
 
         return false;
     }
 
     private void addWordToConceptOrIncreaseValueOfConcept(PhraseConcept ph, Token currentToken) {
-        if (this.info.getWords().contains(ph) == false) {
+        if (this.info.getPhraseConcepts().contains(ph) == false) {
             Word word = info.getWord(currentToken.getToken(), Const.PHRASE_PARTS.NOUN);
-            phraseConcept.put(ph.getConcept(), ph);
-            ph.getWords().put(currentToken.getToken(), word);
-            ph.increaseFrequency();
+            if (phraseConcept.containsKey(ph.getConcept())) {
+                phraseConcept.get(ph.getConcept()).getWords().put(currentToken.getToken(), word);
+                phraseConcept.get(ph.getConcept()).increaseFrequency();
+            } else {
+                phraseConcept.put(ph.getConcept(), ph);
+                phraseConcept.get(ph.getConcept()).getWords().put(currentToken.getToken(), word);
+            }
         } else {
             phraseConcept.get(ph.getConcept()).increaseFrequency();
         }

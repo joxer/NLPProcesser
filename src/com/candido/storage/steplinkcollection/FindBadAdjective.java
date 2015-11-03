@@ -23,19 +23,18 @@ public class FindBadAdjective extends StepLinks {
     public boolean handle() {
         List<Token> tokens = info.getTokens();
 
-        for (int i = 0; i < tokens.size(); i++) {
+        for (Token currentToken : tokens) {
 
-            Token currentToken = tokens.get(i);
             if (currentToken.part == Const.PHRASE_PARTS.ADJECTIVE) {
                 Word wd = this.info.getAdjectiveDefinition(currentToken.token);
                 if (info.isBadAdjective(wd)) {
-                    Logger.debug("found negative adjective:" + currentToken);
-
-
-                    info.addBadAdjective(wd);
+                    if (info.isBadAdjective(wd) && currentToken.modifier != Const.MODIFIERS.NEGATION) {
+                        Logger.debug("found bad adjective:" + currentToken);
+                        info.addBadAdjective(wd);
+                    }
                 }
-
             }
+
         }
         return false;
     }

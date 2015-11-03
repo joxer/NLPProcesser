@@ -7,7 +7,7 @@ import com.candido.storage.Const;
  */
 public class Logger {
 
-    public static final int DEBUG_LEVEL = Const.DEBUG;
+    public static final int DEBUG_LEVEL = Const.INFO;
 
     public static void debug(String str) {
         if (DEBUG_LEVEL == Const.DEBUG) {
@@ -26,5 +26,9 @@ public class Logger {
         if (DEBUG_LEVEL >= Const.VERBOSE) {
             System.out.println("[VERBOSE] " + str);
         }
+    }
+
+    public static void error(String s) {
+        System.err.println("[ERR] " + s);
     }
 }

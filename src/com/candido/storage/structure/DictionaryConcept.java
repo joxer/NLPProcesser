@@ -11,7 +11,6 @@ import java.util.Map;
 public class DictionaryConcept {
 
     String concept;
-
     Map<String, Word> words;
 
     public DictionaryConcept(String concept) {
@@ -33,9 +32,11 @@ public class DictionaryConcept {
     }
 
     public boolean equals(DictionaryConcept cp) {
-
         return this.concept.equals(cp.concept);
+    }
 
+    public String toString() {
+        return "[concept: " + this.concept + "]";
     }
 
     public Map<String, Word> getWords() {

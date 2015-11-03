@@ -2,10 +2,7 @@ package com.candido.storage;
 
 import com.candido.WordsStorage;
 import com.candido.storage.steplinkcollection.Token;
-import com.candido.storage.structure.DictionaryConcept;
-import com.candido.storage.structure.PhraseConcept;
-import com.candido.storage.structure.Word;
-import com.candido.storage.structure.WordsGroup;
+import com.candido.storage.structure.*;
 
 import java.util.*;
 
@@ -22,13 +19,14 @@ public class SimpleAnalyzerInformation {
     private WordsStorage wordStorage;
     private List<Token> tokens;
     private String originalString;
-
+    private List<FuzzyConcept> fuzzyConcepts;
     public SimpleAnalyzerInformation(String originalString, WordsStorage wordStorage) {
         this.words = new PriorityQueue<>(10, new PhraseConcept.ConceptComparator());
         this.positiveAdjective = new HashSet<>();
         this.negativeAdjective = new HashSet<>();
         this.wordStorage = wordStorage;
         this.originalString = originalString;
+        this.fuzzyConcepts = new ArrayList<>();
         tokens = new ArrayList<>();
     }
 
@@ -59,7 +57,7 @@ public class SimpleAnalyzerInformation {
         return wordStorage.getWord(currentToken, Const.PHRASE_PARTS.ADJECTIVE);
     }
 
-    public PriorityQueue<PhraseConcept> getWords() {
+    public PriorityQueue<PhraseConcept> getPhraseConcepts() {
         return words;
     }
 
@@ -101,6 +99,10 @@ public class SimpleAnalyzerInformation {
 
     public void setResult(double result) {
         this.result = result;
+    }
+
+    public void addNounConnectedWithAdjectives(FuzzyConcept exConcept) {
+        this.fuzzyConcepts.add(exConcept);
     }
 }
 

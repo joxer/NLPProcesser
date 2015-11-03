@@ -37,7 +37,7 @@ public class TokenizeString extends StepLinks {
                 Matcher match = patternObject.matcher(original);
 
                 /*
-                SHOULD LOOKUP ON NEGATION
+                SHOULD LOOKUP ON NEGATION BEFORE STRING
                  */
 
                 if (match.find()) {

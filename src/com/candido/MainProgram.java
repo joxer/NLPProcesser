@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by joxer on 31/10/15.
  */
-public class Main {
+public class MainProgram {
 
     private String json;
     private String phrases;
@@ -21,9 +21,9 @@ public class Main {
 
         try {
 
-            Main m = new Main();
-            m.parseInput(args);
-            m.run();
+            MainProgram mainProgram = new MainProgram();
+            mainProgram.parseInput(args);
+            mainProgram.run();
 
         } catch (ArgumentsFewException e) {
             e.printHelp();
@@ -41,14 +41,13 @@ public class Main {
         Path ph = Paths.get(this.json);
         Path inputTxt = Paths.get(this.phrases);
 
-
         List<String> loadInput = FileLoader.loadFile(inputTxt);
         WordsStorage wd = WordsStorage.loadFromPath(ph);
 
         for (String str : loadInput) {
-            SimpleAnalyzer sp = new SimpleAnalyzer(str, wd);
-            sp.setInput(str);
-            sp.process();
+            SimpleAnalyzer simpleAnalyzer = new SimpleAnalyzer(str, wd);
+            simpleAnalyzer.setInput(str);
+            simpleAnalyzer.process();
         }
     }
 

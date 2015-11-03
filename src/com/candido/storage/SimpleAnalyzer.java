@@ -43,13 +43,15 @@ public class SimpleAnalyzer implements Criteria {
         FindSubject subject = new FindSubject(infos);
         FindGoodAdjective goodAdjective = new FindGoodAdjective(infos);
         FindBadAdjective badAdjective = new FindBadAdjective(infos);
+        FindSubjectAdjective subjectAdj = new FindSubjectAdjective(infos);
         ComputeResult compute = new ComputeResult(infos);
         LogResultProbability log = new LogResultProbability(infos);
 
         tokenizer.setNext(subject);
         subject.setNext(goodAdjective);
         goodAdjective.setNext(badAdjective);
-        badAdjective.setNext(compute);
+        badAdjective.setNext(subjectAdj);
+        subjectAdj.setNext(compute);
         compute.setNext(log);
         StepLinks step = tokenizer;
 

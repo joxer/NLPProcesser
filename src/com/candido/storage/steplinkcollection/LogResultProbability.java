@@ -23,8 +23,8 @@ public class LogResultProbability extends StepLinks {
         Logger.info("Current phrase computed: " + info.getOriginalString());
 
         Logger.debug("Topic of the phrase are:");
-        while (info.getWords().size() > 0) {
-            PhraseConcept concept = info.getWords().poll();
+        while (info.getPhraseConcepts().size() > 0) {
+            PhraseConcept concept = info.getPhraseConcepts().poll();
             Logger.debug(concept.getConcept());
             Logger.debug("Because it talk about: " + concept.printWords());
         }

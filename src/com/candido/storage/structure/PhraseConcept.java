@@ -25,6 +25,10 @@ public class PhraseConcept extends DictionaryConcept {
 
     }
 
+    public String toString() {
+        return super.toString();
+    }
+
     public void increaseFrequency() {
         this.frequency += 1;
     }
