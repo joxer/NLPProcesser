@@ -5,6 +5,7 @@ import org.apache.commons.cli.*;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -33,6 +34,11 @@ public class MainProgram {
             mainProgram.printHelp();
         } catch (ArgumentHelpException e) {
             mainProgram.printHelp();
+        } catch (ParseException e) {
+            mainProgram.printHelp();
+        } catch (NoSuchFileException file) {
+            System.out.println("File doesn't exist: " + file.getFile() + "\n" +
+                    "Provide a valid input");
         } catch (JSONException e) {
             System.err.println("the JSON input is not properly formatted");
         } catch (Exception e) {
@@ -60,13 +66,10 @@ public class MainProgram {
         }
     }
 
-    private void parseInput(String[] args) throws ArgumentsFewException, ArgumentHelpException {
+    private void parseInput(String[] args) throws ArgumentsFewException, ArgumentHelpException, ParseException {
 
         CommandLineParser parser = new BasicParser();
         CommandLine cmd = null;
-
-
-        try {
 
             cmd = parser.parse(options, args);
 
@@ -78,10 +81,5 @@ public class MainProgram {
             }
 
 
-        } catch (ParseException e) {
-
-            throw new ArgumentHelpException();
-
-        }
     }
 }
