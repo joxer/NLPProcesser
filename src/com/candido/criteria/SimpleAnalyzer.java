@@ -1,7 +1,7 @@
-package com.candido.storage;
+package com.candido.criteria;
 
 import com.candido.WordsStorage;
-import com.candido.storage.steplinkcollection.*;
+import com.candido.criteria.steplinkcollection.*;
 
 /**
  * Created by joxer on 31/10/15.

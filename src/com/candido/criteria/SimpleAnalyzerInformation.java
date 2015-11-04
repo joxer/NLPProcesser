@@ -1,8 +1,9 @@
-package com.candido.storage;
+package com.candido.criteria;
 
+import com.candido.Const;
 import com.candido.WordsStorage;
-import com.candido.storage.steplinkcollection.Token;
-import com.candido.storage.structure.*;
+import com.candido.criteria.steplinkcollection.Token;
+import com.candido.criteria.structure.*;
 
 import java.util.*;
 

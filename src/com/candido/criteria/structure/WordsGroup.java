@@ -1,4 +1,4 @@
-package com.candido.storage.structure;
+package com.candido.criteria.structure;
 
 import java.util.HashMap;
 

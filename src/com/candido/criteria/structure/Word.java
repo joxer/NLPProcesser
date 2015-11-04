@@ -1,6 +1,6 @@
-package com.candido.storage.structure;
+package com.candido.criteria.structure;
 
-import com.candido.storage.Const;
+import com.candido.Const;
 
 /**
  * Created by joxer on 31/10/15.

@@ -1,4 +1,4 @@
-package com.candido.test;
+package test;
 
 import com.candido.WordsStorage;
 import org.junit.Test;

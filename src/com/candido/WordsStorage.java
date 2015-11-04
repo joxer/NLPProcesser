@@ -1,9 +1,8 @@
 package com.candido;
 
-import com.candido.storage.Const;
-import com.candido.storage.structure.DictionaryConcept;
-import com.candido.storage.structure.Word;
-import com.candido.storage.structure.WordsGroup;
+import com.candido.criteria.structure.DictionaryConcept;
+import com.candido.criteria.structure.Word;
+import com.candido.criteria.structure.WordsGroup;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -167,6 +166,10 @@ public class WordsStorage {
 
         }
         return null;
+    }
+
+    public WordsGroup getAdjectives() {
+        return this.getPhrasePart().get(Const.PHRASE_PARTS.ADJECTIVE);
     }
 }
 

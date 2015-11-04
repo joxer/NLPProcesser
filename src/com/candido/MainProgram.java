@@ -1,6 +1,8 @@
 package com.candido;
 
-import com.candido.storage.SimpleAnalyzer;
+import com.candido.criteria.Criteria;
+import com.candido.criteria.SimpleAnalyzer;
+import com.candido.criteria.ThirdPartyBayes;
 import org.apache.commons.cli.*;
 import org.json.JSONException;
 
@@ -17,11 +19,14 @@ public class MainProgram {
     private String json;
     private String phrases;
     private Options options;
+    private Criteria criterium;
+    private WordsStorage storage;
 
     public MainProgram() {
+
         options = new Options();
-        options.addOption("d", "dictionary", true, "Dictionary of the analyzer");
-        options.addOption("r", "reviews", true, "Reviews of the analyzer");
+        addOptions();
+
     }
 
     public static void main(String args[]) {
@@ -46,6 +51,14 @@ public class MainProgram {
         }
     }
 
+    private void addOptions() {
+        options.addOption("d", "dictionary", true, "Dictionary of the analyzer");
+        options.addOption("r", "reviews", true, "Reviews of the analyzer");
+        options.addOption("b", "bayes", true, "Use a bayes filter");
+        options.addOption("f", "frequency", true, "use frequency of words");
+
+    }
+
     public void printHelp() {
         HelpFormatter formatter = new HelpFormatter();
         formatter.printHelp("NLPProcessor", options);
@@ -53,20 +66,18 @@ public class MainProgram {
 
     private void run() throws IOException {
 
-        Path ph = Paths.get(this.json);
         Path inputTxt = Paths.get(this.phrases);
 
         List<String> loadInput = FileLoader.loadFile(inputTxt);
-        WordsStorage wd = WordsStorage.loadFromPath(ph);
 
         for (String str : loadInput) {
-            SimpleAnalyzer simpleAnalyzer = new SimpleAnalyzer(wd);
-            simpleAnalyzer.setInput(str);
-            simpleAnalyzer.process();
+            criterium.setInput(str);
+            criterium.process();
         }
+
     }
 
-    private void parseInput(String[] args) throws ArgumentsFewException, ArgumentHelpException, ParseException {
+    private void parseInput(String[] args) throws ArgumentsFewException, ArgumentHelpException, ParseException, IOException {
 
         CommandLineParser parser = new BasicParser();
         CommandLine cmd = null;
@@ -80,6 +91,24 @@ public class MainProgram {
                 throw new ArgumentsFewException();
             }
 
+        loadStorage();
 
+
+        if (cmd.hasOption("b")) {
+            Logger.info("Program started in bayes mode!");
+            ThirdPartyBayes simpleAnalyzer = new ThirdPartyBayes(this.storage.getAdjectives());
+            criterium = simpleAnalyzer;
+        } else {
+            Logger.info("Program started in frequentistic mode!");
+            SimpleAnalyzer simpleAnalyzer = new SimpleAnalyzer(this.storage);
+            criterium = simpleAnalyzer;
+        }
+
+
+    }
+
+    private void loadStorage() throws IOException {
+        Path ph = Paths.get(this.json);
+        this.storage = WordsStorage.loadFromPath(ph);
     }
 }

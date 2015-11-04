@@ -1,8 +1,9 @@
-package com.candido.storage.steplinkcollection;
+package com.candido.criteria.steplinkcollection;
 
+import com.candido.Const;
 import com.candido.Logger;
-import com.candido.storage.SimpleAnalyzerInformation;
-import com.candido.storage.structure.PhraseConcept;
+import com.candido.criteria.SimpleAnalyzerInformation;
+import com.candido.criteria.structure.PhraseConcept;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
@@ -39,6 +40,11 @@ public class LogResultProbability extends StepLinks {
         Logger.debug(Arrays.toString(info.getNegativeAdjective().toArray()));
 
         Logger.info("Final Result:" + this.info.getResult());
+        if (this.info.getResult() >= Const.POSITIVE_ADJECTIVE_MIN) {
+            Logger.info("phrase is considered good");
+        } else {
+            Logger.info("phrase is considered bad");
+        }
         return false;
     }
 }

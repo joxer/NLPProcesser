@@ -1,11 +1,11 @@
-package com.candido.storage.steplinkcollection;
+package com.candido.criteria.steplinkcollection;
 
 import com.candido.Logger;
 import com.candido.Utils;
-import com.candido.storage.SimpleAnalyzerInformation;
-import com.candido.storage.structure.FuzzyConcept;
-import com.candido.storage.structure.PhraseConcept;
-import com.candido.storage.structure.Word;
+import com.candido.criteria.SimpleAnalyzerInformation;
+import com.candido.criteria.structure.FuzzyConcept;
+import com.candido.criteria.structure.PhraseConcept;
+import com.candido.criteria.structure.Word;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,7 +1,5 @@
 package com.candido;
 
-import com.candido.storage.Const;
-
 /**
  * Created by joxer on 31/10/15.
  */

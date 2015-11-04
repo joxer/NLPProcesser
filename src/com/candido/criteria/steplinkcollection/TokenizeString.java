@@ -1,8 +1,8 @@
-package com.candido.storage.steplinkcollection;
+package com.candido.criteria.steplinkcollection;
 
-import com.candido.storage.Const;
-import com.candido.storage.SimpleAnalyzerInformation;
-import com.candido.storage.structure.WordsGroup;
+import com.candido.Const;
+import com.candido.criteria.SimpleAnalyzerInformation;
+import com.candido.criteria.structure.WordsGroup;
 
 import java.util.Iterator;
 import java.util.regex.Matcher;

@@ -1,10 +1,10 @@
-package com.candido.storage.steplinkcollection;
+package com.candido.criteria.steplinkcollection;
 
-import com.candido.storage.Const;
-import com.candido.storage.SimpleAnalyzerInformation;
-import com.candido.storage.structure.DictionaryConcept;
-import com.candido.storage.structure.PhraseConcept;
-import com.candido.storage.structure.Word;
+import com.candido.Const;
+import com.candido.criteria.SimpleAnalyzerInformation;
+import com.candido.criteria.structure.DictionaryConcept;
+import com.candido.criteria.structure.PhraseConcept;
+import com.candido.criteria.structure.Word;
 
 import java.util.HashMap;
 import java.util.List;

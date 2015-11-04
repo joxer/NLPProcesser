@@ -1,6 +1,6 @@
-package com.candido.storage.steplinkcollection;
+package com.candido.criteria.steplinkcollection;
 
-import com.candido.storage.Const;
+import com.candido.Const;
 
 /**
  * Created by joxer on 01/11/15.
