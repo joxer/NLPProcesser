@@ -1,8 +1,9 @@
 NLPProcesser - Trivago assessment
 
 This Program concern about a dictionary and a set of reviews you can supply as input.
-The programming language choosen is Java, because it's a fast language and it can work nearly everywhere.
-There are some external jars, jUnit to test the code, A NaiveBayesClassifier library i found on Github, and a parser
+The programming language choosen is Java, because it's a fast language, a lot people can read and program it
+and it can work nearly everywhere.
+There are some external jars, jUnit to test the code, A NaiveBayesClassifier library I found on Github, and a parser
 for the command line made by Apache.
 
 ###################
@@ -42,11 +43,13 @@ Each part of phrase has his own JSONArray. Each value of the array as a JSONObje
 the value represented.
 Nouns also have a topic, it's the general concept they are trying to figuring, so for example "room" and "apartment"
 and "chamber" resemble the idea of a room.
-Adjective have a rate that vary from -0.99 to 0.99
+Adjective have a rate that vary from -0.99 to 0.99 that is the difference between a good and a bad adjective, using
+0.0 as middle value.
 Other part of the phrase can be added to represent verbs, adverbs, ecc.
 
-The reviews file is a json object made this way:
 
+
+The reviews file is a json object made this way:
 
 {
 
@@ -65,6 +68,8 @@ The reviews file is a json object made this way:
 }
 
 
+Url is just an info for the reader, it's not used by the program. Phrases is an Array of string.
+
 ###################
 
 
@@ -77,8 +82,9 @@ The program itself is simple, is structured in this way:
 2) Take each review and pass it to a chain of processing
 3) the final value is generated and printed out
 
-The load of the dictionary has been made using a class for Storage. It takes the dictionary, as json format, in input
-and load it in several maps. Also it construct the concepts map, where concepts are an idea behind several words.
+The load of the dictionary has been made using a class for storage called WordsStorage. It takes the dictionary, as
+json format, in input and load it in several maps. Also it construct the concepts map, where concepts are an idea
+behind several words.
 
 The program has several level of output. It can be changed before compiling in the Logger class.
 The dictionary class has a loader that get all values from json file and put them in two maps. One for the concepts
@@ -91,7 +97,7 @@ score() : get the final score in the phrase
 process() : process the phrase using the istanced criterion
 setInput() : set the input of the class
 
-There's two way to process the program, through a count of good adjectives and bad adjectives or through a bayes filter
+There's two way to process the program, through a count of good adjectives and bad adjectives or through a bayes filter.
 
 The "frequencies" way was written all by me. The bayes way use an external class, because i didn't got time to write it
 on my own.
@@ -113,7 +119,7 @@ I've created on my own a simple processing chain build up as:
 - Computing the final result
 - Log the result
 
-"Tokenize String" rely on Regular Expression, it's very simple and not quite efficent. I think it could be faster.
+"Tokenize String" rely on a regular expression, it's very simple and not quite efficient. I think it could be faster.
 Also it didn't check for a negation before an adjective, it should be capable of doing it.
 
 "Find Subject" relies on a simple lookup with token find in the previous step and the dictionary provided when the
