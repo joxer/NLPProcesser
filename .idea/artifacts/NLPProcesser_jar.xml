@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="NLPProcesser:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/NLPProcesser_jar</output-path>
+    <root id="archive" name="NLPProcesser.jar">
+      <element id="module-output" name="NLPProcesser" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/junit-4.8.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/com.springsource.org.apache.commons.cli-1.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/NaiveBayesClassifier.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

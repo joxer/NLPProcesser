@@ -43,6 +43,13 @@ public class ComputeResult extends StepLinks {
             finalResult = (positiveSum - negativeSum) / sum;
         }
 
+        if (finalResult > 1.0) {
+            finalResult = 1.0;
+        } else if (finalResult < -1.0) {
+            finalResult = -1.0;
+        }
+
+
         this.info.setResult(finalResult);
 
         return false;

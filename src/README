@@ -2,8 +2,12 @@ NLPProcesser - Trivago assessment
 
 This Program concern about a dictionary and a set of reviews you can supply as input.
 The programming language choosen is Java, because it's a fast language and it can work nearly everywhere.
-The only external dependence I've included is the JSON library, it's a very small library so I added all the source code
-to the project instead of using a jar or an external jar
+There are some external jars, jUnit to test the code, A NaiveBayesClassifier library i found on Github, and a parser
+for the command line made by Apache.
+
+###################
+
+Input of program:
 
 The dictionary is a json object organized this way:
 
@@ -41,23 +45,65 @@ and "chamber" resemble the idea of a room.
 Adjective have a rate that vary from -0.99 to 0.99
 Other part of the phrase can be added to represent verbs, adverbs, ecc.
 
+The reviews file is a json object made this way:
+
+
+{
+
+"url":"http://www.tripadvisor.co.uk/Hotel_Review-g189852-d1056936-Reviews-Brunnby_Hotel-Stockholm.html",
+"phrases":
+
+[
+  "This is a terrible place. Staff just want to get money. The bedrooms are dirty, everythig is not good.
+  Coffee is not free. I think that the beds are not changed really often. I could not sleep in this horrible hotel.",
+
+  "One staff member was kind, the rest were sullen and frustrated. The places staircase is horrible and impossibly
+   to get around with bags. Couldn't wait to leave. If your considering hostels around amsterdam, consider sleeping
+   under a red light district windows welcome mat "
+  ]
+
+}
+
+
+###################
+
+
+Structure and development of the program:
+
+
 The program itself is simple, is structured in this way:
 
 1) Load review and dictionary
 2) Take each review and pass it to a chain of processing
 3) the final value is generated and printed out
 
-The program has several level of output. It can be changed before compiling in the Logger class.
+The load of the dictionary has been made using a class for Storage. It takes the dictionary, as json format, in input
+and load it in several maps. Also it construct the concepts map, where concepts are an idea behind several words.
 
+The program has several level of output. It can be changed before compiling in the Logger class.
 The dictionary class has a loader that get all values from json file and put them in two maps. One for the concepts
 and one for the words.
 
+The interface "Criteria" has 3 simple methods that all implementation to be created should follow.
+They are:
+
+score() : get the final score in the phrase
+process() : process the phrase using the istanced criterion
+setInput() : set the input of the class
+
+There's two way to process the program, through a count of good adjectives and bad adjectives or through a bayes filter
+
+The "frequencies" way was written all by me. The bayes way use an external class, because i didn't got time to write it
+on my own.
+
+The "frequencies" way is organized this way:
+
 The AnalyzerInfo is a class organized as a Chain of Methods. Each step of it progress the computation of the review.
 I've used this pattern because it's easy to add new criteria of judging, removing the, plugging others, and each step is
-indipendent from the others. The only structure passed between them is an info structure holding all the information
+independent from the others. The only structure passed between them is an info structure holding all the information
 about sentence
 
-I've created a simple processing chain build up as:
+I've created on my own a simple processing chain build up as:
 
 - Tokenize String
 - Find Subject of the phrases
@@ -65,6 +111,7 @@ I've created a simple processing chain build up as:
 - Find bad adjective
 - Find Minimum sentence (just an early implementation, it just connect subject to the nearest adjectives)
 - Computing the final result
+- Log the result
 
 "Tokenize String" rely on Regular Expression, it's very simple and not quite efficent. I think it could be faster.
 Also it didn't check for a negation before an adjective, it should be capable of doing it.
@@ -81,10 +128,31 @@ The idea is to expand this program and pass this kind of result to a training al
 a thing in the review.
 
 "Computing result" is the weighted average of the total adjectives. A little fixed is did by the multiplication by a
-costant in the case the positive adjectives are more than the negatives ones or vice versa.
+constant in the case the positive adjectives are more than the negatives ones or vice versa.
+
+The "Bayesian" way is organized this way:
+
+I got an opensource library from internet (https://github.com/datumbox/NaiveBayesClassifier) ,
+where you have to pass as input a dictionary of good or bad adjective as a filter.
+This way it recognize in a good way if a phrase is good or bad, but it doesn't get the general idea of what
+the phrase is talking about. There isn't a preprocesser to see what's the subject of the phrase. So it's a very naive
+filter, filtering only about the general meaning of the phrase.
 
 
-Testing it:
+###################
 
-I got some real reviews from tripadvisor and putted in a json file as input for the program.
-The results are good, it returns a good idea of the hotel for each review and bring out nearly exact result.
+Testing and Result:
+
+As output there's only the idea if a phrase is good or bad, otherwise in the class there's a score defined from -1 to 1.
+-1 is the worst value, so a bad review, 1 is the best review, so a good review. The bayes filter only thinks in a boolean
+way so good or bad, the "frequencies" way thinks in probability so has floating points value.
+
+I got some real reviews from tripadvisor and putted them in a file as input for the program.
+The results are good in both implementation, it returns a good idea of the hotel for each review and bring out nearly
+exact result.
+I found that the bayes library I got, isn't really accurate as well as my code, it can lead to false positive sometimes.
+Anyway it's an idea to show how my library and program can be expanded easily with new criteria.
+
+The next step to expand the program should be about concerning if an adjective is about a specific subject and get a
+general idea of what's bad or good in a review.
+

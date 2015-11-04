@@ -54,8 +54,8 @@ public class MainProgram {
     private void addOptions() {
         options.addOption("d", "dictionary", true, "Dictionary of the analyzer");
         options.addOption("r", "reviews", true, "Reviews of the analyzer");
-        options.addOption("b", "bayes", true, "Use a bayes filter");
-        options.addOption("f", "frequency", true, "use frequency of words");
+        options.addOption("b", "bayes", false, "Use a bayes filter");
+        options.addOption("f", "frequency", false, "use frequency of words");
 
     }
 
